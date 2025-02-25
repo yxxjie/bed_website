@@ -1,0 +1,315 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+body {
+    font-family: 'Permanent Marker', cursive;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body {
+  font-family: 'Fredoka One', cursive;
+}
+
+/* @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+
+body {
+    font-family: 'Rubik', sans-serif;
+} */
+
+
+
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(../images/porsche.png) no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+
+.backgroundpic {
+  background: none;
+  /* Remove any background setting from this class */
+}
+
+
+
+/*  SCROLLBAR  */
+
+/* For WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+  /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #090909;
+  /* color of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  /* color of the scrollbar thumb */
+  border-radius: 10px;
+  /* roundness of the scrollbar thumb */
+  border: 3px solid #28242c;
+  /* creates padding around the thumb */
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%)
+}
+
+
+
+
+
+
+
+
+/* Styling for the login message container */
+#loginMessage {
+  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  margin: 50px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling for the paragraph */
+#loginMessage p {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+/* Styling for the buttons */
+#loginMessage .btn {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Adding a glowing border effect */
+#loginMessage .btn::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  z-index: -1;
+  border-radius: 50px;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#loginMessage .btn:hover::before {
+  opacity: 1;
+}
+
+/* Gradient animation for the buttons */
+#loginMessage .btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(to right, #6a11cb, #2575fc, #6a11cb, #2575fc);
+  z-index: -1;
+  border-radius: 50px;
+  transition: transform 0.5s ease;
+  transform: translateX(-50%);
+}
+
+#loginMessage .btn:hover::after {
+  transform: translateX(0);
+}
+
+#loginMessage .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: Styling for better button appearance on different screen sizes */
+@media (max-width: 600px) {
+  #loginMessage {
+    padding: 15px;
+  }
+
+  #loginMessage .btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+footer {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #D3D3D3;
+  padding: 20px 0;
+  margin-top: 80px;
+  font-size: 15px;
+}
+
+.footer-logo {
+  width: 100px;
+  height: 100px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #D3D3D3;
+  ;
+  transform: scale(1.1);
+}
+
+.footer-social a {
+  color: #D3D3D3;
+  margin-right: 10px;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.footer-social a:hover {
+  color: #ffffff;
+}
+
+
+
+.footer-bottom p {
+  margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Star Color */
+.rate,
+.ratechange {
+  display: inline-block;
+  padding: 0 0.6rem;
+  margin: 0 auto;
+}
+
+.rate:not(:checked)>input,
+.ratechange:not(:checked)>input {
+  position: absolute;
+  top: -9999px;
+  visibility: hidden;
+}
+
+.rate:not(:checked)>label,
+.ratechange:not(:checked)>label {
+  float: right;
+  width: 2.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 3rem;
+  color: #ccc;
+  transition: all 0.3s ease;
+  margin-right: 1rem;
+  /* Increased gap between stars */
+}
+
+.rate:not(:checked)>label:before,
+.ratechange:not(:checked)>label:before {
+  content: '★';
+}
+
+.rate>input:checked~label,
+.ratechange>input:checked~label {
+  color: #ffd700;
+  /* Brighter yellow color */
+  transform: scale(1.2);
+}
+
+.rate:not(:checked)>label:hover,
+.rate:not(:checked)>label:hover~label,
+.ratechange:not(:checked)>label:hover,
+.ratechange:not(:checked)>label:hover~label {
+  color: #ffd700;
+  transform: scale(1.2);
+}
+
+.rate>input:checked+label:hover,
+.rate>input:checked+label:hover~label,
+.rate>input:checked~label:hover,
+.rate>input:checked~label:hover~label,
+.rate>label:hover~input:checked~label,
+.ratechange>input:checked+label:hover,
+.ratechange>input:checked+label:hover~label,
+.ratechange>input:checked~label:hover,
+.ratechange>input:checked~label:hover~label,
+.ratechange>label:hover~input:checked~label {
+  color: #ffd700;
+  transform: scale(1.2);
+}

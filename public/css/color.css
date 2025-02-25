@@ -1,0 +1,169 @@
+/* General button styles */
+button {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Adding a glowing border effect */
+button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+    /* background: linear-gradient(90deg, #002bff, #ff00f5, #002bff); */
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+button:hover::before {
+    opacity: 1;
+}
+
+/* Submit button styles */
+.submitbutton {
+    background: linear-gradient(45deg, #4CAF50, #2e7d32);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submitbutton:hover {
+    background: linear-gradient(45deg, #66bb6a, #388e3c);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Edit button styles */
+.updatebutton {
+    background: linear-gradient(45deg, #2196F3, #1565c0);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.updatebutton:hover {
+    background: linear-gradient(45deg, #42a5f5, #1e88e5);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Delete button styles */
+.deletebutton {
+    background: linear-gradient(45deg, #f44336, #d32f2f);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.deletebutton:hover {
+    background: linear-gradient(45deg, #ef5350, #c62828);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* View Detail button styles */
+.viewbutton {
+    background: linear-gradient(45deg, #ff9800, #f57c00);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.viewbutton:hover {
+    background: linear-gradient(45deg, #ffb74d, #ef6c00);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Purchase button styles */
+.purchasebutton {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #ff5722, #d32f2f);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for the purchase button */
+.purchasebutton:hover {
+    background: linear-gradient(45deg, #ff7043, #c62828);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px) scale(1.05);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#points {
+    display: inline-block;
+    padding: 6px 12px;
+    color: rgb(255, 0, 183);
+    text-decoration: none;
+    border-radius: 19px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.4s ease;
+    background: linear-gradient(45deg, rgba(255, 0, 183, 0.2), rgba(255, 0, 183, 0.5));
+    border: 2px solid rgb(255, 0, 183);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+#points :hover {
+    color: #fff;
+    background: linear-gradient(45deg, rgba(255, 0, 183, 0.4), rgba(255, 0, 183, 0.7));
+    border-color: rgb(255, 0, 183);
+    box-shadow: 0 0 20px rgba(255, 0, 183, 0.8);
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgb(255, 0, 183), 0 0 20px rgb(255, 0, 183), 0 0 30px rgba(255, 0, 183, 0.5);
+}
+
+#wallet {
+    display: inline-block;
+    padding: 6px 12px;
+    color: rgb(255, 0, 183);
+    text-decoration: none;
+    border-radius: 19px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.4s ease;
+    background: linear-gradient(45deg, rgba(255, 0, 183, 0.2), rgba(255, 0, 183, 0.5));
+    border: 2px solid rgb(255, 0, 183);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+#wallet :hover {
+    color: #fff;
+    background: linear-gradient(45deg, rgba(255, 0, 183, 0.4), rgba(255, 0, 183, 0.7));
+    border-color: rgb(255, 0, 183);
+    box-shadow: 0 0 20px rgba(255, 0, 183, 0.8);
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgb(255, 0, 183), 0 0 20px rgb(255, 0, 183), 0 0 30px rgba(255, 0, 183, 0.5);
+}
