@@ -4,54 +4,75 @@ const pool = require('../services/db');
 // READ ALL USERS
 //////////////////////////////////////////////////////
 module.exports.selectAll = (callback) => {
-    const SQLSTATEMENT = `SELECT * FROM "User";`;
-    pool.query(SQLSTATEMENT, callback);
-};
+    const SQLSTATMENT = `
+    SELECT * FROM User;
+    `;
+
+    pool.query(SQLSTATMENT, callback);
+}
 
 //////////////////////////////////////////////////////
 // READ USER BY ITS ID
 //////////////////////////////////////////////////////
 module.exports.selectById = (data, callback) => {
-    const SQLSTATEMENT = `SELECT * FROM "User" WHERE id = $1;`;
+    const SQLSTATEMENT = `
+    SELECT * FROM User
+    WHERE id = ?;
+    `;
     const VALUES = [data.id];
     pool.query(SQLSTATEMENT, VALUES, callback);
-};
+}
 
 //////////////////////////////////////////////////////
-// CHECK IF USER EXISTS
+// CHECK IF USER EXIST
 //////////////////////////////////////////////////////
 module.exports.checkUser = (data, callback) => {
-    const SQLSTATEMENT = `SELECT * FROM "User" WHERE id = $1;`;
+    const SQLSTATEMENT = `
+    SELECT * FROM User
+    WHERE id = ?;
+    `;
     const VALUES = [data.id];
+
     pool.query(SQLSTATEMENT, VALUES, callback);
 };
 
 //////////////////////////////////////////////////////
-// CHECK IF USERNAME EXISTS
+// CHECK IF USERNAME EXIST
 //////////////////////////////////////////////////////
 module.exports.checkUserNameExist = (data, callback) => {
-    const SQLSTATEMENT = `SELECT * FROM "User" WHERE username = $1;`;
+    const SQLSTATMENT = `
+    SELECT * FROM User
+    WHERE username = ?;
+    `;
     const VALUES = [data.username];
-    pool.query(SQLSTATEMENT, VALUES, callback);
+
+    pool.query(SQLSTATMENT, VALUES, callback);
 };
 
 //////////////////////////////////////////////////////
 // UPDATE THE USER
 //////////////////////////////////////////////////////
 module.exports.updateById = (data, callback) => {
-    const SQLSTATEMENT = `
-    UPDATE "User" SET username = $1 WHERE id = $2 RETURNING *;
+    const SQLSTATMENT = `
+    UPDATE User
+    SET username = ?
+    WHERE id = ?;
     `;
     const VALUES = [data.username, data.id];
-    pool.query(SQLSTATEMENT, VALUES, callback);
-};
+
+    pool.query(SQLSTATMENT, VALUES, callback);
+}
 
 //////////////////////////////////////////////////////
 // CHECK POINTS TO CONVERT POINTS TO WALLET
 //////////////////////////////////////////////////////
 module.exports.checkPoints = (data, callback) => {
-    const SQLSTATEMENT = `SELECT * FROM "User" WHERE id = $1;`;
+    const SQLSTATEMENT = `
+    SELECT * FROM User
+    WHERE id = ?;
+    `;
     const VALUES = [data.id];
+
     pool.query(SQLSTATEMENT, VALUES, callback);
 };
 
@@ -59,18 +80,28 @@ module.exports.checkPoints = (data, callback) => {
 // CONVERT POINTS INTO MONEY
 //////////////////////////////////////////////////////
 module.exports.walletConversionById = (data, callback) => {
-    const SQLSTATEMENT = `
-    UPDATE "User" SET wallet = $1, points = $2 WHERE id = $3 RETURNING *;
+    const SQLSTATMENT = `
+    UPDATE User
+    SET wallet = ?
+    WHERE id = ?;
+
+    UPDATE User
+    SET points = ?
+    WHERE id = ?;
     `;
-    const VALUES = [data.updated_wallet, data.remaining_points, data.id];
-    pool.query(SQLSTATEMENT, VALUES, callback);
+    const VALUES = [data.updated_wallet, data.id, data.remaining_points, data.id];
+
+    pool.query(SQLSTATMENT, VALUES, callback);
 };
 
 //////////////////////////////////////////////////////
 // READ CAR BY ID
 //////////////////////////////////////////////////////
 module.exports.selectCarById = (data, callback) => {
-    const SQLSTATEMENT = `SELECT * FROM "Car" WHERE id = $1;`;
+    const SQLSTATEMENT = `
+    SELECT * FROM Car
+    WHERE id = ?;
+    `;
     const VALUES = [data.id];
     pool.query(SQLSTATEMENT, VALUES, callback);
 };
@@ -79,108 +110,142 @@ module.exports.selectCarById = (data, callback) => {
 // READ USER BY USER ID
 //////////////////////////////////////////////////////
 module.exports.selectUserByUserId = (data, callback) => {
-    const SQLSTATEMENT = `SELECT * FROM "User" WHERE id = $1;`;
+    const SQLSTATEMENT = `
+    SELECT * FROM User
+    WHERE id = ?;
+    `;
     const VALUES = [data.user_id];
     pool.query(SQLSTATEMENT, VALUES, callback);
 };
 
 //////////////////////////////////////////////////////
-// CHECK IF USER ALREADY OWNS THE CAR
+// CHECK IF USER HAS ALREADY OWN THE CAR OR NOT
 //////////////////////////////////////////////////////
 module.exports.checkCarOwnByUser = (data, callback) => {
-    const SQLSTATEMENT = `SELECT car_id FROM "CarOwnByUser" WHERE owner_id = $1;`;
+    const SQLSTATEMENT = `
+    SELECT car_id FROM CarOwnByUser
+    WHERE owner_id = ?;
+    `;
     const VALUES = [data.user_id];
     pool.query(SQLSTATEMENT, VALUES, callback);
 };
 
 //////////////////////////////////////////////////////
-// UPDATE USER'S STATUS
+// UPDATE USER'S STATUS BY USER ID
 //////////////////////////////////////////////////////
 module.exports.statusConversionById = (data, callback) => {
     const SQLSTATEMENT = `
-    UPDATE "User" SET wallet = $1, status = $2 WHERE id = $3 RETURNING *;
+    UPDATE User
+    SET wallet = ?, status = ?
+    WHERE id = ?;
     `;
     const VALUES = [data.updated_wallet, data.updated_status, data.user_id];
     pool.query(SQLSTATEMENT, VALUES, callback);
 };
 
 //////////////////////////////////////////////////////
-// ADD CAR TO USER'S COLLECTION
+// UPDATE THE USER'S CAR COLLECTION
 //////////////////////////////////////////////////////
 module.exports.carOwnByUser = (data, callback) => {
-    const SQLSTATEMENT = `
-    INSERT INTO "CarOwnByUser" (owner_id, car_id) VALUES ($1, $2) RETURNING *;
+    const SQLSTATMENT = `
+    INSERT INTO CarOwnByUser (owner_id, car_id)
+    VALUES (?, ?);
     `;
     const VALUES = [data.user_id, data.car_id];
-    pool.query(SQLSTATEMENT, VALUES, callback);
-};
+
+    pool.query(SQLSTATMENT, VALUES, callback);
+}
 
 //////////////////////////////////////////////////////
-// GET ALL CARS OWNED BY USER
+// READ ALL CARS OWNED BY USER
 //////////////////////////////////////////////////////
 module.exports.selectAllCarsByUserId = (data, callback) => {
-    const SQLSTATEMENT = `SELECT * FROM "CarOwnByUser" WHERE owner_id = $1;`;
+    const SQLSTATEMENT = `
+    SELECT * FROM CarOwnByUser
+    WHERE owner_id = ?;
+    `;
     const VALUES = [data.id];
     pool.query(SQLSTATEMENT, VALUES, callback);
-};
+}
 
 //////////////////////////////////////////////////////
-// GET ALL CAR DETAILS BY MULTIPLE CAR IDS
+// READ ALL CAR DETAILS BY CAR ID
 //////////////////////////////////////////////////////
 module.exports.selectCarsByIds = (data, callback) => {
-    const SQLSTATEMENT = `SELECT * FROM "Car" WHERE id = ANY($1);`;
+    const SQLSTATEMENT = `
+    SELECT * FROM Car
+    WHERE id IN (?);
+    `;
     const VALUES = [data.carIds];
     pool.query(SQLSTATEMENT, VALUES, callback);
-};
+}
 
 //////////////////////////////////////////////////////
-// GET USER'S POINTS
+// GET POINTS TO DISPLAY
 //////////////////////////////////////////////////////
 module.exports.getPoints = (data, callback) => {
-    const SQLSTATEMENT = `SELECT points FROM "User" WHERE id = $1;`;
+    const SQLSTATMENT = `
+        SELECT points FROM User
+        WHERE id = ?;
+        `;
     const VALUES = [data.userId];
-    pool.query(SQLSTATEMENT, VALUES, callback);
-};
+
+    pool.query(SQLSTATMENT, VALUES, callback);
+}
 
 //////////////////////////////////////////////////////
-// GET USER'S WALLET BALANCE
+// GET WALLET TO DISPLAY
 //////////////////////////////////////////////////////
 module.exports.getWallet = (data, callback) => {
-    const SQLSTATEMENT = `SELECT wallet FROM "User" WHERE id = $1;`;
+    const SQLSTATMENT = `
+        SELECT wallet FROM User
+        WHERE id = ?;
+        `;
     const VALUES = [data.userId];
-    pool.query(SQLSTATEMENT, VALUES, callback);
-};
+
+    pool.query(SQLSTATMENT, VALUES, callback);
+}
 
 //////////////////////////////////////////////////////
-// LOGIN CONTROLLER
+// CONTROLLER FOR LOGIN
 //////////////////////////////////////////////////////
 module.exports.login = (data, callback) => {
-    const SQLSTATEMENT = `SELECT * FROM "User" WHERE username = $1;`;
+    const SQLSTATMENT = `
+    SELECT * FROM User
+    WHERE username = ?;
+    `;
     const VALUES = [data.username];
-    pool.query(SQLSTATEMENT, VALUES, callback);
-};
+
+    pool.query(SQLSTATMENT, VALUES, callback);
+}
 
 //////////////////////////////////////////////////////
-// REGISTER NEW USER
+// CONTROLLER FOR REGISTER
 //////////////////////////////////////////////////////
 module.exports.insertSingle = (data, callback) => {
-    const SQLSTATEMENT = `
-    INSERT INTO "User" (username, email, password, points, wallet, status)
-    VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;
+    const SQLSTATMENT = `
+    INSERT INTO User (username, email, password, points, wallet, status)
+    VALUES (?, ?, ?, ?, ?, ?);
     `;
     const VALUES = [data.username, data.email, data.password, data.points, data.wallet, data.status];
-    pool.query(SQLSTATEMENT, VALUES, callback);
-};
+
+    pool.query(SQLSTATMENT, VALUES, callback);
+}
 
 //////////////////////////////////////////////////////
-// CHECK IF USERNAME OR EMAIL EXISTS
+// MIDDLEWARE FOR CHECK IF USERNAME OR EMAIL EXISTS
 //////////////////////////////////////////////////////
 module.exports.usernameAndEmailCheck = (data, callback) => {
-    const SQLSTATEMENT = `
-    SELECT * FROM "User" WHERE username = $1
-    UNION
-    SELECT * FROM "User" WHERE email = $2;
+    const SQLSTATMENT = `
+    SELECT * FROM User
+    WHERE username = ?;
+
+    SELECT * FROM User
+    WHERE email = ?;
     `;
     const VALUES = [data.username, data.email];
-    pool.query(SQLSTATEMENT, VALUES, callback);
-};
+
+    pool.query(SQLSTATMENT, VALUES, callback);
+}
+
+
