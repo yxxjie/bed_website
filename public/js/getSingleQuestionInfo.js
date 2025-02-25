@@ -18,9 +18,9 @@ const callbackForquestionInfo = (responseStatus, responseData) => {
           <div class="container">
                 <div class="container" style="background-color: rgba(0, 0, 0, 0.8); padding: 15px; border: solid; border-radius: 10px; border-color: #D3D3D3">
                 <p class="card-text" style="color: #D3D3D3">
-                    Creator ID: ${responseData.creator_id} <br>
-                    Question: ${responseData.question} <br>
-                    Created On: ${responseData.created_on} <br>
+                    Creator ID: ${responseData.rows.creator_id} <br>
+                    Question: ${responseData.rows.question} <br>
+                    Created On: ${responseData.rows.created_on} <br>
                 </p>
             </div>
         </div>

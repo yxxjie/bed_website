@@ -9,7 +9,7 @@ const callback = (responseStatus, responseData) => {
 
   //Display all users that has been registered
   const userList = document.getElementById("userList");
-  responseData.forEach((user) => {
+  responseData.rows.forEach((user) => {
     const displayItem = document.createElement("div");
     displayItem.className =
       "col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 p-3";

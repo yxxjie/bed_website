@@ -62,7 +62,7 @@ module.exports.checkUser = (req, res, next) => {
             if (!req.locals) {
                 req.locals = {};
             }
-            req.locals.id = results[0].id;
+            req.locals.id = results.rows[0].id;
             next();
         }
     };
@@ -159,17 +159,17 @@ module.exports.checkPoints = (req, res, next) => {
         if (error) {
             console.error("Error associationCheck:", error);
             res.status(500).json({ error: 'Internal server error' });
-        } else if (results[0].points < data.pointsAmount) {
+        } else if (results.rows[0].points < data.pointsAmount) {
             res.status(404).json({ message: 'Insufficient Points' });
         } else {
 
             if (!req.locals) {
                 req.locals = {};
             }
-            req.locals.id = results[0].id;
+            req.locals.id = results.rows[0].id;
             req.locals.pointsAmount = data.pointsAmount,
-                req.locals.points = results[0].points,
-                req.locals.wallet = results[0].wallet
+                req.locals.points = results.rows[0].points,
+                req.locals.wallet = results.rows[0].wallet
             next();
         }
     };
@@ -401,7 +401,7 @@ module.exports.readAllCarsByUserId = (req, res, next) => {
 // READ ALL CAR DETAILS BY CAR ID
 //////////////////////////////////////////////////////
 module.exports.readCarDetailsByCarIds = (req, res) => {
-    const carIds = res.locals.cars.map(car => car.car_id);
+    const carIds = res.locals.cars.rows.map(car => car.car_id);
 
     
     const callback = (error, results, fields) => {
@@ -480,9 +480,9 @@ module.exports.login = (req, res, next) => {
                 });
             }
             else {
-                res.locals.userId = results[0].id
-                res.locals.username = results[0].username;
-                res.locals.hash = results[0].password;
+                res.locals.userId = results.rows[0].id
+                res.locals.username = results.rows[0].username;
+                res.locals.hash = results.rows[0].password;
                 next();
             }
         }
@@ -541,13 +541,14 @@ module.exports.checkUsernameOrEmailExist = (req, res, next) => {
             console.error("Error checkUsernameOrEmailExist:", error);
             return res.status(500).json({ message: "Internal server error." });
         } else {
-            if (results[0].length != 0) {
+            console.log(results)
+            if (results.rows.length != 0) {
                 return res.status(409).json({
                     message: "Username or email already exists"
                 });
             }
 
-            else if (results[1].length != 0) {
+            else if (results.rows.length != 0) {
                 return res.status(409).json({
                     message: "Username or email already exists"
                 });

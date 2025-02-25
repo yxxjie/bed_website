@@ -26,7 +26,7 @@ const questionsCallback = (responseStatus, responseData) => {
     console.log("responseData:", responseData);
 
     const questionList = document.getElementById("questionList");
-    responseData.forEach((question) => {
+    responseData.rows.forEach((question) => {
         const displayItem = document.createElement("div");
         displayItem.className = "col-12 p-2";
         displayItem.innerHTML = `

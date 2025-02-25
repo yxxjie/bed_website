@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("responseData:", responseData);
 
         const reviewList = document.getElementById("Reviews");
-        responseData.forEach((review) => {
+        responseData.rows.forEach((review) => {
             const displayItem = document.createElement("div");
             displayItem.className =
                 `col-xl-4 col-lg-5 col-md-5 col-sm-6 col-xs-12 p-3 px-2`;

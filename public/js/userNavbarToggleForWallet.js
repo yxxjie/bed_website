@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         logoutButton.classList.remove("d-none");
         // Show the user's points
         wallet.classList.remove("d-none");
-        wallet.innerText = `Wallet: ${responseData[0].wallet}`;
+        wallet.innerText = `Wallet: ${responseData.rows[0].wallet}`;
         //Show login and register buttons
         loginMessage.classList.add("d-none");
       }

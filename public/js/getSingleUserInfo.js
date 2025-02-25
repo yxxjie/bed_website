@@ -15,20 +15,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Format wallet with commas
-    const formattedWallet = responseData.wallet.toLocaleString();
+    const formattedWallet = responseData.rows.wallet.toLocaleString();
 
     //Display user info
     userInfo.innerHTML = `
         <div class="container">
              <div class="container" style="background-color: rgba(0, 0, 0, 0.8); padding: 15px; border: solid; border-radius: 10px; border-color: #D3D3D3">
                 <p class="card-text" style="color: #D3D3D3;">
-                    User ID: ${responseData.id} <br>
-                    Username: ${responseData.username} <br>
-                    Email: ${responseData.email} <br>
-                    Points: ${responseData.points} <br>
+                    User ID: ${responseData.rows.id} <br>
+                    Username: ${responseData.rows.username} <br>
+                    Email: ${responseData.rows.email} <br>
+                    Points: ${responseData.rows.points} <br>
                     Wallet: $${formattedWallet} <br>
-                    Net Worth: ${responseData.status} <br>
-                    Created On: ${responseData.created_on} <br>
+                    Net Worth: ${responseData.rows.status} <br>
+                    Created On: ${responseData.rows.created_on} <br>
                 </p>
             </div>
         </div>
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Display all cars owned by the user
     const userCarList = document.getElementById("userCarList");
-    responseData.forEach((car) => {
+    responseData.rows.forEach((car) => {
       const displayItem = document.createElement("div");
       displayItem.className = "col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 p-3";
       displayItem.innerHTML = `

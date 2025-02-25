@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         logoutButton.classList.remove("d-none");
         // Show the user's points
         points.classList.remove("d-none");
-        points.innerText = `Points: ${responseData[0].points}`;
+        points.innerText = `Points: ${responseData.rows[0].points}`;
         // Show login and register buttons
         loginMessage.classList.add("d-none");
       }

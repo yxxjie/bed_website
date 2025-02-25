@@ -4,76 +4,79 @@ const pool = require('../services/db');
 // CREATE NEW REVIEW
 //////////////////////////////////////////////////////
 module.exports.insertSingle = (data, callback) => {
-    const SQLSTATMENT = `
-    INSERT INTO Reviews (rating_amt, user_id)
-    VALUES (?, ?);
+    const SQLSTATEMENT = `
+    INSERT INTO "reviews" (rating_amt, user_id)
+    VALUES ($1, $2)
+    RETURNING *;
     `;
     const VALUES = [data.rating_amt, data.user_id];
 
-    pool.query(SQLSTATMENT, VALUES, callback);
-}
+    pool.query(SQLSTATEMENT, VALUES, callback);
+};
 
 //////////////////////////////////////////////////////
 // READ REVIEW BY REVIEW ID
 //////////////////////////////////////////////////////
 module.exports.selectById = (data, callback) => {
-    const SQLSTATMENT = `
-    SELECT * FROM Reviews
-    WHERE review_id = ?;
+    const SQLSTATEMENT = `
+    SELECT * FROM "reviews"
+    WHERE review_id = $1;
     `;
     const VALUES = [data.id];
 
-    pool.query(SQLSTATMENT, VALUES, callback);
-}
+    pool.query(SQLSTATEMENT, VALUES, callback);
+};
 
 //////////////////////////////////////////////////////
-// READ ALL REVIEWS
+// READ ALL REVIEWS WITH USER DETAILS
 //////////////////////////////////////////////////////
 module.exports.selectAll = (callback) => {
-    const SQLSTATMENT = `
-    SELECT * FROM Reviews
-    INNER JOIN user ON user.id = Reviews.user_id;
+    const SQLSTATEMENT = `
+    SELECT "reviews".*, "User".username, "User".email 
+    FROM "reviews"
+    INNER JOIN "User" ON "User".id = "Reviews".user_id;
     `;
 
-    pool.query(SQLSTATMENT, callback);
-}
+    pool.query(SQLSTATEMENT, callback);
+};
 
 //////////////////////////////////////////////////////
 // CHECK IF THE USER ID AND CREATOR ID MATCH
 //////////////////////////////////////////////////////
 module.exports.selectByReviewId = (data, callback) => {
-    const SQLSTATMENT = `
-    SELECT * FROM Reviews
-    WHERE review_id = ?;
+    const SQLSTATEMENT = `
+    SELECT * FROM "reviews"
+    WHERE review_id = $1;
     `;
     const VALUES = [data.id];
 
-    pool.query(SQLSTATMENT, VALUES, callback);
-}
+    pool.query(SQLSTATEMENT, VALUES, callback);
+};
 
 //////////////////////////////////////////////////////
 // UPDATE REVIEW BY REVIEW ID
 //////////////////////////////////////////////////////
 module.exports.updateById = (data, callback) => {
-    const SQLSTATMENT = `
-    UPDATE Reviews 
-    SET rating_amt = ?
-    WHERE review_id = ?;
+    const SQLSTATEMENT = `
+    UPDATE "reviews" 
+    SET rating_amt = $1
+    WHERE review_id = $2
+    RETURNING *;
     `;
     const VALUES = [data.rating_amt, data.id];
 
-    pool.query(SQLSTATMENT, VALUES, callback);
-}
+    pool.query(SQLSTATEMENT, VALUES, callback);
+};
 
 //////////////////////////////////////////////////////
 // DELETE REVIEW BY REVIEW ID
 //////////////////////////////////////////////////////
 module.exports.deleteById = (data, callback) => {
-    const SQLSTATMENT = `
-    DELETE FROM Reviews 
-    WHERE review_id = ?;
+    const SQLSTATEMENT = `
+    DELETE FROM "reviews" 
+    WHERE review_id = $1;
     `;
     const VALUES = [data.id];
 
-    pool.query(SQLSTATMENT, VALUES, callback);
-}
+    pool.query(SQLSTATEMENT, VALUES, callback);
+};

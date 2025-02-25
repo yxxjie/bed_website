@@ -35,4 +35,3 @@ function fetchMethod(url, callback, method = "GET", data = null, token = null) {
     })
     .catch((error) => console.error(`Error from ${method} ${url}:`, error));
 }
-

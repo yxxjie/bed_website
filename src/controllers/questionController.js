@@ -229,7 +229,7 @@ module.exports.readAnswerByQuestionId = (req, res, next) => {
             if (results.length == 0) {
                 res.status(404).json({ message: "No answers available" });
             } else {
-                results.forEach(result => {
+                results.rows.forEach(result => {
                     result.answer = result.answer === 1; // Convert 1 to true, everything else to false
                 });
                 res.status(200).json(results);

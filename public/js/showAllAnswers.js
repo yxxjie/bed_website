@@ -9,7 +9,7 @@ const callbackForquestionInfo = (responseStatus, responseData) => {
     const answerList = document.getElementById("answerList");
 
     //DIsplay all answers
-    responseData.forEach((answer) => {
+    responseData.rows.forEach((answer) => {
         const displayItem = document.createElement("div");
         displayItem.className = "col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 p-4";
         displayItem.innerHTML = `

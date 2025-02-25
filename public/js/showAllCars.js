@@ -30,7 +30,7 @@ const callback = (responseStatus, responseData) => {
   carList.innerHTML = ""; // Clear existing items
 
   //Show all cars in the dealership
-  responseData.forEach((car) => {
+  responseData.rows.forEach((car) => {
     const displayItem = document.createElement("div");
     displayItem.className = "col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 p-3";
     displayItem.innerHTML = `
